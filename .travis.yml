@@ -1,0 +1,21 @@
+language: ruby
+
+# whitelist
+branches:  
+  only:
+    - master
+
+services:  
+    #Enable docker service inside travis
+    - docker
+
+before_install:  
+    - docker login -e="$DOCKER_EMAIL" -u="$DOCKER_USERNAME" -p="$DOCKER_PASSWORD"
+
+script:  
+    #build the image
+    - docker build --no-cache -t rg911/aspnet5docker .
+    #tag the build
+    - docker tag rg911/aspnet5docker:latest rg911/aspnet5docker:v1
+    #push the image to the repository
+    - docker push rg911/aspnet5docker
