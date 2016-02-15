@@ -10,6 +10,7 @@ services:
     - docker
 
 before_install:  
+    - cd src/DemoMVC
     - docker login -e="$DOCKER_EMAIL" -u="$DOCKER_USERNAME" -p="$DOCKER_PASSWORD"
 
 script:  
